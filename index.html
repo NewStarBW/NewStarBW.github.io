@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Media</title>
     <title>欢迎来到我的小世界</title>
     <style>
         body {
@@ -29,6 +31,30 @@
             /*margin: 50px;*/
             transition: background-color 0.3s;
         }
+        #videoContainer {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        #videoPlayer {
+            width: 80%;
+            max-width: 800px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
 
         .hidden {
             display: none;
@@ -49,11 +75,65 @@
             opacity: 1;
             top: calc(100% + 10px);
         }
+
     </style>
+    <link rel="stylesheet" href=layui/layui.css>
     <script>
-        function playMusic() {
-            var audio = new Audio('song/稻香.mp3');
-            audio.play();
+        var currentAudio = null; // To keep track of the currently playing audio
+        var audioPaused = false; // To track whether the audio is paused
+        var currentVideo = null;
+        var videoPaused = false;
+        function playMusic(audioSrc) {
+            if (currentAudio) {
+                if (audioPaused) {
+                    currentAudio.play();
+                    audioPaused = false;
+                } else {
+                    currentAudio.pause();
+                    audioPaused = true;
+                }
+            } else {
+                currentAudio = new Audio(audioSrc);
+                currentAudio.play();
+            }
+        }
+        function playVideo(videoSrc) {
+            if (currentVideo) {
+                if (videoPaused) {
+                    currentVideo.play();
+                    videoPaused = false;
+                } else {
+                    currentVideo.pause();
+                    videoPaused = true;
+                }
+            } else {
+                currentVideo = document.createElement('video');
+                currentVideo.id = 'videoPlayer';
+                currentVideo.src = videoSrc;
+                currentVideo.controls = true;
+
+                var closeButton = document.createElement('span');
+                closeButton.id = 'closeButton';
+                closeButton.innerText = 'Close';
+                closeButton.addEventListener('click', closeVideo);
+
+                var videoContainer = document.createElement('div');
+                videoContainer.id = 'videoContainer';
+                videoContainer.appendChild(currentVideo);
+                videoContainer.appendChild(closeButton);
+
+                document.body.appendChild(videoContainer);
+                currentVideo.play();
+            }
+        }
+
+        function closeVideo() {
+            if (currentVideo) {
+                currentVideo.pause();
+                currentVideo.parentNode.removeChild(currentVideo);
+                currentVideo = null;
+            }
+        }
 
             var container = document.querySelector('.container');
             var message = document.createElement('p');
@@ -64,16 +144,41 @@
             var button = document.getElementById('playButton');
             button.classList.add('hidden');
             container.classList.add('show-message'); 
-        }
+
+
     </script>
+    <script src="layui/layui.js"></script>
 </head>
 
 <body>
+<ul class="layui-nav layui-bg-blue" >
+    <li class="layui-nav-item">
+        <a href="https://bilibili.com">去B站看看吧？<span></span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="https://baidu.com">带你去百度~<span></span></a>
+    </li>
+    <li class="layui-nav-item">
+
+        <a href="javascript:;">
+            <img src="img/蜡笔小新.jpg" class="layui-nav-img">
+        </a>
+        <dl class="layui-nav-child">
+            <dd><a href="javascript:;" onclick="playMusic('song/认真的雪.mp3')">认真的雪</a></dd>
+            <dd><a href="javascript:;" onclick="playMusic('song/枫.mp3')">枫</a></dd>
+            <dd><a href="javascript:;" onclick="playMusic('song/发如雪.mp3')">发如雪</a></dd>
+            <dd><a href="javascript:;" onclick="playMusic('song/宋亚轩 - 5_23PM + 从今以后 (Live).flac')">从今以后现场版</a></dd>
+            <dd><a href="javascript:;" onclick="playVideo('song/无数.mp4')">无数</a></dd>
+            <dd style="text-align: center;"><a href="img/670797d325e9ac948bff093ee32fcff.jpg">这里没有宋亚轩</a></dd>
+        </dl>
+
+    </li>
+</ul>
 <div class="container">
     <p>你好呀！我的朋友！</p>
     <p>我准备了一首歌哦</p>
     <p>必须要听！</p>
-    <button id="playButton" class="one" onclick="playMusic()">嘿嘿嘿嘿~快来戳戳我</button>
+    <button id="playButton" class="one" onclick="playMusic('song/稻香.mp3')">嘿嘿嘿嘿~快来戳戳我</button>
 </div>
 </body>
 </html>
