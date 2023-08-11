@@ -1,32 +1,79 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>练习</title>
-<style>
-/*a:link{
-			text-decoration: #000000
-	  }*/
-	.demo1{
-		text-align: center;
-		font-size: 30px;
-		text-decoration-line: through;
-		padding-left: 40px;
-	}
-		a.one:link{
-			background-color:#0C32CF; 
-			font-size:40px;
-			text-align: center;
-			
-	}
-		a.one:visited{background-color:#13D3CC; }
-		a.one:hover{background-color:#1FCF93; }
-		a.one:active{background-color:#BFD711; }
-	
-</style>
+    <meta charset="utf-8">
+    <title>欢迎来到我的小世界</title>
+    <style>
+        body {
+            background-image: url("http://pic.bizhi360.com/bbpic/89/10389.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .container {
+            text-align: center;
+            font-size: 30px;
+            color: #f6f4f4;
+            margin-top: 10%;
+            font-family: sans-serif;
+            position: relative; /* 让 container 变为相对定位，以容纳提示文字 */
+        }
+
+        button.one {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            text-align: center;
+            color: #0259ea;
+            /*margin: 50px;*/
+            transition: background-color 0.3s;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            position: absolute;
+            top: 100%; /* 设置提示文字的初始位置在按钮底部 */
+            left: 50%;
+            transform: translateX(-50%);
+            color: #0761e8;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s, top 0.3s; /* 添加 top 属性的过渡效果 */
+        }
+
+        .show-message .message {
+            opacity: 1;
+            top: calc(100% + 10px); /* 让提示文字在按钮底部的上方一些距离 */
+        }
+    </style>
+    <script>
+        function playMusic() {
+            var audio = new Audio('song/稻香.mp3'); // 替换成你的音乐文件路径
+            audio.play();
+
+            var container = document.querySelector('.container');
+            var message = document.createElement('p');
+            message.className = 'message';
+            message.textContent = '请你听歌儿~~~';
+            container.appendChild(message);
+
+            var button = document.getElementById('playButton');
+            button.classList.add('hidden');
+            container.classList.add('show-message'); // 添加 show-message 类以触发提示文字的显示
+        }
+    </script>
 </head>
 
 <body>
-	<p style="text-align:center"><b><a class="one" href="https://baidu.com" target="_blank">This is a link</a></b></p>
+<div class="container">
+    <p>你好呀！我的朋友！</p>
+    <p>我准备了一首歌哦</p>
+    <p>必须要听！</p>
+    <button id="playButton" class="one" onclick="playMusic()">嘿嘿嘿嘿~快来戳戳我</button>
+</div>
 </body>
 </html>
