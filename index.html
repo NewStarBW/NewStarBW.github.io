@@ -16,7 +16,7 @@
             color: #f6f4f4;
             margin-top: 10%;
             font-family: sans-serif;
-            position: relative; /* 让 container 变为相对定位，以容纳提示文字 */
+            position: relative;
         }
 
         button.one {
@@ -36,23 +36,23 @@
 
         .message {
             position: absolute;
-            top: 100%; /* 设置提示文字的初始位置在按钮底部 */
+            top: 100%;
             left: 50%;
             transform: translateX(-50%);
             color: #0761e8;
             font-size: 24px;
             opacity: 0;
-            transition: opacity 0.3s, top 0.3s; /* 添加 top 属性的过渡效果 */
+            transition: opacity 0.3s, top 0.3s; 
         }
 
         .show-message .message {
             opacity: 1;
-            top: calc(100% + 10px); /* 让提示文字在按钮底部的上方一些距离 */
+            top: calc(100% + 10px);
         }
     </style>
     <script>
         function playMusic() {
-            var audio = new Audio('song/稻香.mp3'); // 替换成你的音乐文件路径
+            var audio = new Audio('song/稻香.mp3');
             audio.play();
 
             var container = document.querySelector('.container');
@@ -63,7 +63,7 @@
 
             var button = document.getElementById('playButton');
             button.classList.add('hidden');
-            container.classList.add('show-message'); // 添加 show-message 类以触发提示文字的显示
+            container.classList.add('show-message'); 
         }
     </script>
 </head>
