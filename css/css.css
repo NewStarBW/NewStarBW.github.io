@@ -1,0 +1,67 @@
+
+.container {
+    text-align: center;
+    font-size: 30px;
+    color: #f6f4f4;
+    margin-top: 10%;
+    font-family: sans-serif;
+    position: relative;
+}
+
+button.one {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    color: #0259ea;
+    transition: background-color 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+.message {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0761e8;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.3s, top 0.3s;
+}
+
+.show-message .message {
+    opacity: 1;
+    top: calc(100% + 10px);
+}
+
+#videoContainer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    max-width: 90%; /* 限制视频宽度 */
+    max-height: 80vh; /* 限制视频高度 */
+}
+
+#videoPlayer {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+button.one.paused {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    color: #0259ea;
+    transition: background-color 0.3s;
+}

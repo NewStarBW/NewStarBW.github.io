@@ -7,82 +7,34 @@
     <title>欢迎来到我的小世界</title>
     <style>
         body {
-            background-image: url("img/10389.jpg");
+            background-image: url("./../NewStarBW.github.io/img/10389.jpg");
             background-repeat: no-repeat;
             background-size: 100%;
         }
 
-        .container {
-            text-align: center;
-            font-size: 30px;
-            color: #f6f4f4;
-            margin-top: 10%;
-            font-family: sans-serif;
-            position: relative;
-        }
-
-        button.one {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 30px;
-            text-align: center;
-            color: #0259ea;
-            /*margin: 50px;*/
-            transition: background-color 0.3s;
-        }
-        #videoContainer {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-        }
-
-        #videoPlayer {
-            width: 80%;
-            max-width: 800px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        #closeButton {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .message {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #0761e8;
-            font-size: 24px;
-            opacity: 0;
-            transition: opacity 0.3s, top 0.3s; 
-        }
-
-        .show-message .message {
-            opacity: 1;
-            top: calc(100% + 10px);
-        }
 
     </style>
     <link rel="stylesheet" href=layui/layui.css>
+    <link rel="stylesheet" type="text/css" href="css/css.css" />
     <script>
         var currentAudio = null; // To keep track of the currently playing audio
         var audioPaused = false; // To track whether the audio is paused
         var currentVideo = null;
         var videoPaused = false;
+        function playMusic2() {
+            var audio = new Audio('song/稻香.mp3'); // 替换成你的音乐文件路径
+            audio.play();
+
+            var container = document.querySelector('.container');
+            var message = document.createElement('p');
+            message.className = 'message';
+            message.textContent = '音乐正在播放中...';
+            container.appendChild(message);
+
+            var button = document.getElementById('playButton');
+            button.classList.add('hidden');
+            container.classList.add('show-message'); // 添加 show-message 类以触发提示文字的显示
+        }
         function playMusic(audioSrc) {
             if (currentAudio) {
                 if (audioPaused) {
@@ -159,6 +111,9 @@
         <a href="https://baidu.com">带你去百度~<span></span></a>
     </li>
     <li class="layui-nav-item">
+        <a href="./text.html">新地方哦~<span></span></a>
+    </li>
+    <li class="layui-nav-item">
 
         <a href="javascript:;">
             <img src="img/蜡笔小新.jpg" class="layui-nav-img">
@@ -178,7 +133,7 @@
     <p>你好呀！我的朋友！</p>
     <p>我准备了一首歌哦</p>
     <p>必须要听！</p>
-    <button id="playButton" class="one" onclick="playMusic('song/稻香.mp3')">嘿嘿嘿嘿~快来戳戳我</button>
+    <button id="playButton" class="one" onclick="playMusic2()">嘿嘿嘿嘿~快来戳戳我</button>
 </div>
 </body>
 </html>
