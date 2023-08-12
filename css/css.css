@@ -7,7 +7,11 @@
     font-family: sans-serif;
     position: relative;
 }
-
+body.two {
+    background-image: url("img/微信图片_20230812124852.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 button.one {
     background-color: transparent;
     border: none;
